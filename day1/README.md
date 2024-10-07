@@ -290,3 +290,25 @@ starting org.apache.spark.deploy.worker.Worker, logging to /opt/spark35/logs/spa
 
 <img src="port1.png">
 
+## spark RDD concept 
+
+<img src="sparkrdd.png">
+
+## spark shell with scala 
+
+```
+val  ashu_numbers = Seq(1,3,6,8,10)
+ashu_numbers: Seq[Int] = List(1, 3, 6, 8, 10)
+
+
+
+scala> val rdd1 = sc.parallelize(ashu_numbers)
+rdd1: org.apache.spark.rdd.RDD[Int] = ParallelCollectionRDD[0] at parallelize at <console>:24
+
+scala> val rdd2 = rdd1.map(x => x*5)
+rdd2: org.apache.spark.rdd.RDD[Int] = MapPartitionsRDD[1] at map at <console>:23
+
+scala> val result = rdd2.collect()
+result: Array[Int] = Array(5, 15, 30, 40, 50)
+
+```
