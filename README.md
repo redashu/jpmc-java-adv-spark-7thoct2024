@@ -10,3 +10,7 @@
 
 <img src="lab1.png">
 
+### Installing vscode pluing and connection with ssh plung 
+
+[click_here](https://www.youtube.com/watch?v=2M_50-VAUJA)
+
