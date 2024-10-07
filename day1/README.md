@@ -253,3 +253,40 @@ Type :help for more information.
 scala> :quit
 
 ```
+
+## starting master 
+
+```
+start-master.sh 
+starting org.apache.spark.deploy.master.Master, logging to /opt/spark35/logs/spark-root-org.apache.spark.deploy.master.Master-1-ashu-spark-machine.out
+
+```
+
+### verify port 
+
+```
+
+netstat -nlpt
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2315/sshd: /usr/sbi 
+tcp6       0      0 :::22                   :::*                    LISTEN      2315/sshd: /usr/sbi 
+tcp6       0      0 :::8080                 :::*                    LISTEN      29090/java          
+tcp6       0      0 172.31.33.162:7077      :::*                    LISTEN      29090/java          
+[root@ashu-spark-machine ~]# 
+
+
+```
+
+### starting worker 
+
+```
+ start-worker.sh   spark://172.31.33.162:7077
+starting org.apache.spark.deploy.worker.Worker, logging to /opt/spark35/logs/spark-root-org.apache.spark.deploy.worker.Worker-1-ashu-spark-machine.out
+
+```
+
+### ports in spark components 
+
+<img src="port1.png">
+
