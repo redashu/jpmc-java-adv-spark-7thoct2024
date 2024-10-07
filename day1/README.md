@@ -405,3 +405,55 @@ Server:
 Docker Compose version v2.29.6
 
 ```
+
+### creating a folder and compose.yaml inside it 
+
+```
+mkdir ashu_spark 
+[root@ashu-spark-machine ~]# cd ashu_spark/
+[root@ashu-spark-machine ashu_spark]# touch compose.yaml 
+[root@ashu-spark-machine ashu_spark]# ls
+compose.yaml
+[root@ashu-spark-machine ashu_spark]# 
+
+```
+
+### running compsoe.yaml file 
+
+```
+docker-compose  up -d
+[+] Running 7/10
+[+] Running 10/10] 3.624MB / 3.624MB Pulling                                                                                        5.6s 
+ ✔ ashu-driver Pulled                                                                                                               5.6s 
+   ✔ 43c4264eed91 Pull complete                                                                                                     2.6s 
+ ✔ ashu-master Pulled                                                                                                               7.7s 
+   ✔ 302e3ee49805 Pull complete                                                                                                     3.0s 
+   ✔ d07412f52e9d Pull complete                                                                                                     4.5s 
+   ✔ 9ab66c386e9c Pull complete                                                                                                     4.6s 
+   ✔ 4b563e5e980a Pull complete                                                                                                     4.6s 
+   ✔ 55af3c8febf2 Pull complete                                                                                                     4.6s 
+   ✔ 5b8e768fb22d Pull complete                                                                                                     4.6s 
+   ✔ 85177e2c6f39 Pull complete                                                                                                     4.6s 
+[+] Running 3/3
+ ✔ Network ashu_spark_default  Created                                                                                              0.1s 
+ ✔ Container ashuc1            Started                                                                                              3.0s 
+ ✔ Container ashuc2            Started                 
+ 
+                                                                              3.1s 
+[root@ashu-spark-machine ashu_spark]# docker-compose ps
+NAME      IMAGE     COMMAND                  SERVICE       CREATED         STATUS         PORTS
+ashuc1    alpine    "ping fb.com"            ashu-driver   7 seconds ago   Up 3 seconds   
+ashuc2    nginx     "/docker-entrypoint.…"   ashu-master   7 seconds ago   Up 3 seconds   0.0.0.0:1234->80/tcp, [::]:1234->80/tcp
+
+```
+
+### some compsoe commands 
+
+```
+ 72  docker-compose  up -d
+   73  docker-compose ps
+   74  docker-compose stop 
+   75  docker-compose start
+   76  docker-compose down 
+
+```

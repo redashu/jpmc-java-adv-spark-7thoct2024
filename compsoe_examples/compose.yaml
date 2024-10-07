@@ -1,0 +1,10 @@
+services:
+  ashu-driver:
+    image: alpine 
+    container_name: ashuc1 
+    command: ["ping", "fb.com"]
+  ashu-master:
+    image: nginx 
+    container_name: ashuc2 
+    ports:
+      - 1234:80 
