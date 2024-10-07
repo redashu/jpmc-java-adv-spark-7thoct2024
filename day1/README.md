@@ -312,3 +312,96 @@ scala> val result = rdd2.collect()
 result: Array[Int] = Array(5, 15, 30, 40, 50)
 
 ```
+
+### stopping spark master and worker in single node 
+
+```
+oot@ashu-spark-machine ~]# stop-worker.sh 
+stopping org.apache.spark.deploy.worker.Worker
+
+[root@ashu-spark-machine ~]# stop-master.sh 
+stopping org.apache.spark.deploy.master.Master
+
+[root@ashu-spark-machine ~]# 
+[root@ashu-spark-machine ~]# netstat -nlpt
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2315/sshd: /usr/sbi 
+tcp6       0      0 :::22                   :::*                    LISTEN      2315/sshd: /usr/sbi 
+[root@ashu-spark-machine ~]# 
+
+```
+## spark as container 
+
+<img src="sparkc1.png">
+
+## Installing docker engine 
+
+```
+ dnf install docker 
+Last metadata expiration check: 3:36:23 ago on Mon Oct  7 07:01:02 2024.
+Dependencies resolved.
+=========================================================================================================================================
+ Package                                Architecture           Version                                 Repository                   Size
+=========================================================================================================================================
+Installing:
+ docker                                 x86_64                 25.0.6-1.amzn2023.0.2                   amazonlinux                  44 M
+Installing dependencies:
+ containerd                             x86_64                 1.7.20-1.amzn2023.0.1                   amazonlinux                  35 M
+ iptables-libs                          x86_64                 1.8.8-3.amzn2023.0.2
+
+```
+
+### starting docker engine 
+
+```
+ systemctl enable --now docker
+
+```
+
+### checking connection with docker engine 
+
+```
+docker version 
+Client:
+ Version:           25.0.5
+ API version:       1.44
+ Go version:        go1.22.5
+ Git commit:        5dc9bcc
+ Built:             Wed Aug 21 00:00:00 2024
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server:
+ Engine:
+  Version:          25.0.6
+  API version:      1.44 (minimum version 1.24)
+  Go version:       go1.22.5
+  Git commit:       b08a51f
+  Built:            Wed Aug 21 00:00:00 2024
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.7.20
+  GitCommit:        8fc6bcff51318944179630522a095cc9dbf9f353
+ runc:
+```
+
+### Docker compose for handling multiple containers 
+
+<img src="compose1.png">
+
+### Installing compsoe in same machine 
+
+```
+ curl -SL https://github.com/docker/compose/releases/download/v2.29.6/docker-compose-linux-x86_64 -o  /usr/bin/docker-compose 
+
+ ===
+ chmod +x /usr/bin/docker-compose
+
+ ===> verify 
+
+ docker-compose version 
+Docker Compose version v2.29.6
+
+```
