@@ -226,3 +226,30 @@ root@ashu-spark-machine spark35]# SPARK_HOME=/opt/spark35/
 [root@ashu-spark-machine spark35]# echo export PATH   >>~/.bashrc 
 [root@ashu-spark-machine spark35]# 
 ```
+
+### close session of machine and relogin to verify
+
+```
+ sudo -i
+[root@ashu-spark-machine ~]# 
+[root@ashu-spark-machine ~]# spark-shell 
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/10/07 07:46:59 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Spark context Web UI available at http://ip-172-31-33-162.ap-south-1.compute.internal:4040
+Spark context available as 'sc' (master = local[*], app id = local-1728287220378).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.5.3
+      /_/
+         
+Using Scala version 2.12.18 (OpenJDK 64-Bit Server VM, Java 17.0.12)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> :quit
+
+```
