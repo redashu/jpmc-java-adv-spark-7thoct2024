@@ -462,3 +462,65 @@ ashuc2    nginx     "/docker-entrypoint.…"   ashu-master   7 seconds ago   Up 
 
 <img src="cm1.png">
 
+### compose as spark machines 
+
+```
+docker-compose  up -d
+WARN[0000] /root/ashu_spark/compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+[+] Running 4/4
+ ✔ spark-client Pulled                                                                                                             43.1s 
+   ✔ fc134cf461a8 Pull complete                                                                                                    39.4s 
+ ✔ spark-master Pulled                                                                                                             43.1s 
+ ✔ spark-worker Pulled                                                                                                             43.1s 
+[+] Running 4/4
+ ✔ Network ashu_spark_default           Created                                                                                     0.1s 
+ ✔ Container ashu_spark-spark-master-1  Started                                                                                     5.4s 
+ ✔ Container ashu_spark-spark-worker-1  Started                                                                                     5.5s 
+ ✔ Container ashu_spark-spark-client-1  Started                                                                                     5.3s 
+[root@ashu-spark-machine ashu_spark]# docker-compose  ps
+WARN[0000] /root/ashu_spark/compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+NAME                        IMAGE                         COMMAND                  SERVICE        CREATED          STATUS          PORTS
+ashu_spark-spark-client-1   docker.io/bitnami/spark:3.5   "/opt/bitnami/script…"   spark-client   15 seconds ago   Up 10 seconds   
+ashu_spark-spark-master-1   docker.io/bitnami/spark:3.5   "/opt/bitnami/script…"   spark-master   15 seconds ago   Up 10 seconds   0.0.0.0:7077->7077/tcp, :::7077->7077/tcp, 0.0.0.0:8080->8080/tcp, :::8080->8080/tcp
+ashu_spark-spark-worker-1   docker.io/bitnami/spark:3.5   "/opt/bitnami/script…"   spark-worker   15 seconds ago   Up 10 seconds   0.0.0.0:4040->4040/tcp, :::4040->4040/tcp, 0.0.0.0:8081->8081/tcp, :::8081->8081/tcp
+
+```
+
+## login to spark driver machine 
+
+```
+docker-compose  exec -it spark-client bash 
+WARN[0000] /root/ashu_spark/compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+I have no name!@77fbde744bf3:/opt/bitnami/spark$ 
+I have no name!@77fbde744bf3:/opt/bitnami/spark$ 
+I have no name!@77fbde744bf3:/opt/bitnami/spark$ exit
+exit
+
+```
+
+## java apps with apache maven 
+
+<img src="mvn.png">
+
+### setup of maven with jdk 11 support in linux 
+
+```
+dnf install java-11* 
+
+===> installing apache maven 3.x 
+dnf install maven 
+
+```
+### verify maven installation 
+
+```
+ mvn -v
+Apache Maven 3.8.4 (Red Hat 3.8.4-3.amzn2023.0.5)
+Maven home: /usr/share/maven
+Java version: 17.0.12, vendor: Amazon.com Inc., runtime: /usr/lib/jvm/java-17-amazon-corretto.x86_64
+Default locale: en, platform encoding: UTF-8
+OS name: "linux", version: "6.1.109-118.189.amzn2023.x86_64", arch: "amd64", family: "unix"
+[root@ashu-spark-machine ashu_spark]# 
+
+
+```
