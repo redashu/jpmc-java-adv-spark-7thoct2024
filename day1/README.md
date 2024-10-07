@@ -127,3 +127,102 @@ LICENSE  NOTICE  R  README.md  RELEASE  bin  conf  data  examples  jars  kuberne
 [root@ashu-spark-machine spark35]# 
 
 ```
+
+### conf directory 
+
+```
+cd conf/
+[root@ashu-spark-machine conf]# ls
+fairscheduler.xml.template  metrics.properties.template   spark-env.sh.template
+log4j2.properties.template  spark-defaults.conf.template  workers.template
+
+
+[root@ashu-spark-machine conf]# cp spark-defaults.conf.template  spark-defaults.conf
+[root@ashu-spark-machine conf]# ls
+fairscheduler.xml.template  metrics.properties.template  spark-defaults.conf.template  workers.template
+log4j2.properties.template  spark-defaults.conf          spark-env.sh.template
+
+
+[root@ashu-spark-machine conf]# cat spark-defaults.conf
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# Default system properties included when running spark-submit.
+# This is useful for setting default environmental settings.
+
+# Example:
+# spark.master                     spark://master:7077
+# spark.eventLog.enabled           true
+# spark.eventLog.dir               hdfs://namenode:8021/directory
+
+```
+
+## Interaction with spark 
+
+- **live** 
+- **jobs** 
+
+### Interaction with scala interface 
+
+```
+cd /opt/spark35/
+[root@ashu-spark-machine spark35]# ls
+LICENSE  NOTICE  R  README.md  RELEASE  bin  conf  data  examples  jars  kubernetes  licenses  python  sbin  yarn
+[root@ashu-spark-machine spark35]# 
+
+[root@ashu-spark-machine spark35]# ./bin/spark-shell 
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/10/07 07:40:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Spark context Web UI available at http://ip-172-31-33-162.ap-south-1.compute.internal:4040
+Spark context available as 'sc' (master = local[*], app id = local-1728286835677).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.5.3
+      /_/
+         
+Using Scala version 2.12.18 (OpenJDK 64-Bit Server VM, Java 17.0.12)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> 
+
+```
+
+### for easy admin / dev practise setup ENV 
+
+```
+root@ashu-spark-machine spark35]# SPARK_HOME=/opt/spark35/
+[root@ashu-spark-machine spark35]# PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+[root@ashu-spark-machine spark35]# export PATH 
+[root@ashu-spark-machine spark35]# 
+
+```
+
+### to make it permanent 
+
+```
+[root@ashu-spark-machine spark35]# echo SPARK_HOME=/opt/spark35/ >>~/.bashrc 
+[root@ashu-spark-machine spark35]# 
+[root@ashu-spark-machine spark35]# echo PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin >>~/.bashrc 
+
+[root@ashu-spark-machine spark35]# echo export PATH   >>~/.bashrc 
+[root@ashu-spark-machine spark35]# 
+```
