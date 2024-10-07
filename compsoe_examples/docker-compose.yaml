@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  spark-master:
+    image: docker.io/bitnami/spark:3.5
+    # volumes:
+    #   - ./apps:/opt/bitnami/spark/code1
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - SPARK_USER=spark
+    ports:
+      - '8080:8080'
+      - "7077:7077"
+  spark-worker:
+    image: docker.io/bitnami/spark:3.5
+    ports:
+      - "4040:4040"
+      - "8081:8081"
+    # volumes:
+    #   - ./apps:/opt/bitnami/spark/code1
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=1G
+      - SPARK_WORKER_CORES=1
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - SPARK_USER=spark
+  spark-client:
+    image: docker.io/bitnami/spark:3.5
+    stdin_open: true
+    tty: true
+    command: ["/bin/bash"]
+    # volumes:
+    #   - ./apps:/opt/bitnami/spark/code1
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no

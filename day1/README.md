@@ -457,3 +457,8 @@ ashuc2    nginx     "/docker-entrypoint.…"   ashu-master   7 seconds ago   Up 
    76  docker-compose down 
 
 ```
+
+### spark is having a single common bin software 
+
+<img src="cm1.png">
+
