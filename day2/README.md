@@ -221,3 +221,31 @@ Kustomize Version: v5.4.2
 0.191.0
 
 ```
+
+### configure aws cred 
+
+```
+aws configure 
+
+```
+
+### get cluster list 
+
+```
+eksctl  get cluster 
+NAME                    REGION          EKSCTL CREATED
+delvex-cluster-new      us-east-1       True
+
+===> get EKS creds 
+
+[ec2-user@ashu-spark-machine ashucode1]$ aws eks update-kubeconfig --name delvex-cluster-new  --region us-east-1
+
+====> verify connection 
+
+kubectl  get nodes
+NAME                             STATUS   ROLES    AGE   VERSION
+ip-192-168-19-235.ec2.internal   Ready    <none>   32h   v1.29.8-eks-a737599
+ip-192-168-57-194.ec2.internal   Ready    <none>   8h    v1.29.8-eks-a737599
+ip-192-168-88-127.ec2.internal   Ready    <none>   8h    v1.29.8-eks-a737599
+
+```
