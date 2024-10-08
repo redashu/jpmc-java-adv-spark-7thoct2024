@@ -44,3 +44,34 @@ tcp6       0      0 :::8081                 :::*                    LISTEN      
 tcp6       0      0 172.31.33.162:42199     :::*                    LISTEN      4130/java       
 
 ```
+
+### allow ssh with password 
+
+```
+ passwd ec2-user
+Changing password for user ec2-user.
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+[root@ashu-spark-machine ~]# 
+[root@ashu-spark-machine ~]# 
+[root@ashu-spark-machine ~]# 
+[root@ashu-spark-machine ~]# nano /etc/ssh/sshd_config 
+[root@ashu-spark-machine ~]# 
+[root@ashu-spark-machine ~]# systemctl restart sshd 
+[root@ashu-spark-machine ~]# 
+
+```
+
+### giving acess to ec2-user of apache spark 
+
+```
+[ec2-user@ashu-spark-machine ~]$ echo SPARK_HOME=/opt/spark35/ >>~/.bashrc 
+[ec2-user@ashu-spark-machine ~]$ echo PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin >>~/.bashrc 
+[ec2-user@ashu-spark-machine ~]$ echo export PATH   >>~/.bashrc 
+[ec2-user@ashu-spark-machine ~]$ 
+[ec2-user@ashu-spark-machine ~]$ source  ~/.bashrc 
+[ec2-user@ashu-spark-machine ~]$ 
+
+```
