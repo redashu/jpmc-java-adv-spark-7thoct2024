@@ -97,8 +97,84 @@ result: Array[Int] = Array(5, 15, 30, 40, 50)
 
 ```
 
-### lets do in java 
+### lets do in java build using maven 
 
 ```
+ mvn clean package 
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.example:ashucode1 >------------------------
+[INFO] Building ashucode1 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ ashucode1 ---
+[INFO] Deleting /home/ec2-user/ashu_codes/ashucode1/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ ashucode1 ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ ashucode1 ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] Compiling 1 source file to /home/ec2-user/ashu_codes/ashucode1/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ ashucode1 ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/ec2-user/ashu_codes/ashucode1/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ ashucode1 ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ashucode1 ---
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ ashucode1 ---
+[INFO] Building jar: /home/ec2-user/ashu_codes/ashucode1/target/ashucode1-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.992 s
+[INFO] Finished at: 2024-10-08T09:27:28Z
+
+===>
+
+ls
+pom.xml  src  target
+[ec2-user@ashu-spark-machine ashucode1]$ ls target/
+ashucode1-1.0-SNAPSHOT.jar  classes  generated-sources  generated-test-sources  maven-archiver  maven-status  test-classes
+[ec2-user@ashu-spark-machine ashucode1]$ 
+```
+
+### submit java jar to apache spark 
+
+```
+ spark-submit  --class com.example.Ashucode1  target/ashucode1-1.0-SNAPSHOT.jar
+
+```
+
+### to clean the build 
+
+```
+ls
+pom.xml  src  target
+[ec2-user@ashu-spark-machine ashucode1]$ mvn clean 
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.example:ashucode1 >------------------------
+[INFO] Building ashucode1 1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ ashucode1 ---
+[INFO] Deleting /home/ec2-user/ashu_codes/ashucode1/target
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.301 s
+[INFO] Finished at: 2024-10-08T09:50:12Z
+[INFO] ------------------------------------------------------------------------
+[ec2-user@ashu-spark-machine ashucode1]$ ls
+pom.xml  src
+[ec2-user@ashu-spark-machine ashucode1]$ 
 
 ```
