@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashu-spark-driver
+  name: ashu-spark-driver  # replace ashu with your name 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashu-spark-driver
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashu-spark-driver
+    spec:
+      containers:
+      - image: docker.io/bitnami/spark:3.5
+        name: spark
+        command: ["/bin/bash"]
+        tty: true 
+        env: 
+        - name: SPARK_MASTER
+          value: "spark://jpmc-spark-master-svc:7077"
+        - name: SPARK_RPC_AUTHENTICATION_ENABLED
+          value: "no" 
+        - name: SPARK_RPC_ENCRYPTION_ENABLED
+          value: "no" 
+        - name: SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED
+          value: "no"
+        - name: SPARK_SSL_ENABLED
+          value: "no" 
+        resources: {}
+status: {}

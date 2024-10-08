@@ -249,3 +249,71 @@ ip-192-168-57-194.ec2.internal   Ready    <none>   8h    v1.29.8-eks-a737599
 ip-192-168-88-127.ec2.internal   Ready    <none>   8h    v1.29.8-eks-a737599
 
 ```
+
+## using helm to deploy spark 3.x 
+
+```
+ helm repo add ashu-repo https://charts.bitnami.com/bitnami
+"ashu-repo" has been added to your repositories
+[ec2-user@ashu-spark-machine linux-amd64]$ 
+[ec2-user@ashu-spark-machine linux-amd64]$ 
+[ec2-user@ashu-spark-machine linux-amd64]$ helm repo ls
+NAME            URL                               
+ashu-repo       https://charts.bitnami.com/bitnami
+[ec2-user@ashu-spark-machine linux-amd64]$ 
+
+===> creating helm chart to setup 
+
+ helm repo ls
+NAME            URL                               
+ashu-repo       https://charts.bitnami.com/bitnami
+[ec2-user@ashu-spark-machine linux-amd64]$ helm install jpmc-spark   ashu-repo/spark --version 9.0.0
+NAME: jpmc-spark
+LAST DEPLOYED: Tue Oct  8 11:26:16 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: spark
+CHART VERSION: 9.0.0
+APP VERSION: 3.5.1
+
+** Please be patient while the chart is being deployed **
+
+1. Get the Spark master WebUI URL by running these commands:
+
+```
+
+### verify we all can do verify 
+
+```
+kubectl   get  pods
+NAME                  READY   STATUS    RESTARTS   AGE
+jpmc-spark-master-0   1/1     Running   0          84s
+jpmc-spark-worker-0   1/1     Running   0          84s
+jpmc-spark-worker-1   1/1     Running   0          53s
+[ec2-user@ashu-spark-machine linux-amd64]$ kubectl   get   statefulsets
+NAME                READY   AGE
+jpmc-spark-master   1/1     95s
+jpmc-spark-worker   2/2     95s
+[ec2-user@ashu-spark-machine linux-amd64]$ 
+
+
+```
+
+### checking service details 
+
+```
+ kubectl  get  svc
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
+jpmc-spark-headless     ClusterIP   None             <none>        <none>            2m43s
+jpmc-spark-master-svc   ClusterIP   10.100.145.116   <none>        7077/TCP,80/TCP   2m43s
+kubernetes              ClusterIP   10.100.0.1       <none>        443/TCP           33h
+
+```
+### spark Driver pod 
+
+```
+
+```
