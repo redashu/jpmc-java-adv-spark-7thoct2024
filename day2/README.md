@@ -317,3 +317,43 @@ kubernetes              ClusterIP   10.100.0.1       <none>        443/TCP      
 ```
 kubectl replace -f spark_driver.yaml --force 
 ```
+
+## running java code from spark driver 
+
+### login to spark driver pod 
+
+```
+kubectl  get  pods
+NAME                                     READY   STATUS              RESTARTS   AGE
+ashu-spark-driver-699bf54df6-zk4hb       1/1     Running             0          16m
+bhairav-spark-driver-5db55cf958-z2tw9    1/1     Running             0          15m
+jpmc-spark-master-0                      1/1     Running             0          36m
+jpmc-spark-worker-0                      1/1     Running             0          36m
+jpmc-spark-worker-1                      1/1     Running             0          35m
+jpmc-spark-worker-2                      1/1     Running             0          101s
+jpmc-spark-worker-3                      0/1     ContainerCreating   0          20s
+kavita-spark-driver-66bf4c4d99-qdv7j     1/1     Running             0          15m
+novino-spark-driver-8b794d87c-sbwdh      1/1     Running             0          12m
+raghav-spark-driver-7644c749b-42z27      1/1     Running             0          13m
+sk-spark-driver-848799bdcd-jsv5w         1/1     Running             0          9m14s
+skt-spark-driver-548d5bb887-t6qz7        1/1     Running             0          8m59s
+spark-training-driver-68c5bd975-lgqmw    1/1     Running             0          11m
+swapna-spark-driver-6cb4468fd7-qjn26     1/1     Running             0          12m
+vineetha-spark-driver-69b976d4d5-pj6hf   1/1     Running             0          3m42s
+
+====>>
+
+[ec2-user@ashu-spark-machine ashu_codes]$ kubectl   exec -it ashu-spark-driver-699bf54df6-zk4hb  -- bash 
+I have no name!@ashu-spark-driver-699bf54df6-zk4hb:/opt/bitnami/spark$ 
+I have no name!@ashu-spark-driver-699bf54df6-zk4hb:/opt/bitnami/spark$ 
+I have no name!@ashu-spark-driver-699bf54df6-zk4hb:/opt/bitnami/spark$ 
+
+```
+
+### login to any of the worker node 
+
+```
+spark-submit --class  org.apache.spark.examples.SparkPi examples/jars/spark-examples_2.12-3.5.1.jar 10
+
+```
+
