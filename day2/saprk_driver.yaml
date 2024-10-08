@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: ashu-spark-driver
-  name: ashu-spark-driver  # replace ashu with your name 
+  name: ashu-spark-driver
 spec:
   replicas: 1
   selector:
@@ -33,5 +33,11 @@ spec:
           value: "no"
         - name: SPARK_SSL_ENABLED
           value: "no" 
-        resources: {}
+        resources:
+          requests:
+            memory: 100M
+            cpu: 100m 
+          limits:
+            memory: 300M
+            cpu: 200m 
 status: {}
