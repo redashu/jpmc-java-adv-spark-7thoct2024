@@ -315,5 +315,5 @@ kubernetes              ClusterIP   10.100.0.1       <none>        443/TCP      
 ### spark Driver pod 
 
 ```
-
+kubectl replace -f spark_driver.yaml --force 
 ```
