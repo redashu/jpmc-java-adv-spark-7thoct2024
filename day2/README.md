@@ -178,3 +178,46 @@ pom.xml  src
 [ec2-user@ashu-spark-machine ashucode1]$ 
 
 ```
+
+### setup of apache spark using helm 
+
+<img src="setup1.png">
+
+### spark with Eks setup overview 
+
+<img src="sparkEks.png">
+
+## Install kubectl eks client 
+
+```
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.31/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.31/rpm/repodata/repomd.xml.key
+EOF
+
+====>
+
+yum install kubectl 
+
+===>
+
+kubectl  version --client 
+Client Version: v1.31.1
+Kustomize Version: v5.4.2
+
+```
+
+### Eksctl install 
+
+```
+ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /usr/bin/
+
+ ===>>
+ eksctl version 
+0.191.0
+
+```
