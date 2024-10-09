@@ -128,3 +128,124 @@ tcp6       0      0 :::22                   :::*                    LISTEN      
 [ec2-user@ashu-spark-machine ~]$ 
 
 ```
+
+### spark sql use cases
+
+<img src="spql.png">
+
+## connecting using spark-sql
+
+```
+ec2-user@ashu-spark-machine ~]$ spark-sql
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/10/09 06:46:15 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+24/10/09 06:46:18 WARN HiveConf: HiveConf of name hive.stats.jdbc.timeout does not exist
+24/10/09 06:46:18 WARN HiveConf: HiveConf of name hive.stats.retries.wait does not exist
+24/10/09 06:46:22 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 2.3.0
+24/10/09 06:46:22 WARN ObjectStore: setMetaStoreSchemaVersion called but recording version is disabled: version = 2.3.0, comment = Set by MetaStore ec2-user@172.31.33.162
+24/10/09 06:46:22 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
+Spark Web UI available at http://ip-172-31-33-162.ap-south-1.compute.internal:4040
+Spark master: local[*], Application Id: local-1728456377181
+spark-sql (default)> 
+
+```
+
+### inside spark-sql --some queries
+
+```
+show databases;
+default
+Time taken: 1.358 seconds, Fetched 1 row(s)
+spark-sql (default)> 
+
+===>
+ create  database ashudb;
+
+ ===>
+ show databases;
+ashudb
+default
+Time taken: 0.044 seconds, Fetched 2 row(s)
+
+===>
+select current_database();
+ashudb
+Time taken: 0.958 seconds, Fetched 1 row(s)
+spark-sql (ashudb)> 
+===>
+
+ create table  ashu_info1 (
+                  > id INT ,
+                  > name STRING,
+                  > email STRING
+                  > );
+
+===>
+show tables;
+ashu_info1
+Time taken: 0.198 seconds, Fetched 1 row(s)
+
+===>
+
+spark-sql (ashudb)> show tables in ashudb;
+ashu_info1
+
+===>
+desc ashu_info1;
+id                      int                                         
+name                    string                                      
+email                   string                                      
+Time taken: 0.344 seconds, Fetched 3 row(s)
+
+===>
+insert into ashu_info1 
+                  > values 
+                  > (2,'jack','jack@linux.com'),
+                  > (3,'harry','h@ok.com');
+
+====>
+
+ create table addr_info (
+                  > id INT,
+                  > address STRING
+                  > );
+
+
+===>
+
+insert into addr_info 
+                  > values 
+                  > (1,'123 main st jaipur'),
+                  > (2,'4/292 backyard hydr'),
+                  > (3,' 5/89 kormangla bangalore');
+
+===>>
+
+ select * from addr_info;
+2       4/292 backyard hydr
+3        5/89 kormangla bangalore
+1       123 main st jaipur
+Time taken: 0.168 seconds, Fetched 3 row(s)
+spark-sql (ashudb)> 
+                  > select * from ashu_info1;
+1       ashu    ashu@linux.com
+3       harry   h@ok.com
+2       jack    jack@linux.com
+Time taken: 0.151 seconds, Fetched 3 row(s)
+
+===>>
+JOin operation on field 
+
+select  t1.id , t1.name , t1.email , t2.address
+                  > FROM ashu_info1 t1 
+                  > JOIN addr_info  t2
+                  > ON t1.id = t2.id ;
+
+
+2       jack    jack@linux.com  4/292 backyard hydr
+3       harry   h@ok.com         5/89 kormangla bangalore
+1       ashu    ashu@linux.com  123 main st jaipur
+Time taken: 0.828 seconds, Fetched 3 row(s)
+
+```
