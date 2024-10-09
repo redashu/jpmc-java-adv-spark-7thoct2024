@@ -301,3 +301,11 @@ SparkSession available as 'spark'.
 
 ```
 
+### spark core to spark SQL engine 
+
+<img src="sql11.png">
+
+### spark cluster more info 
+
+<img src="spi.png">
+
