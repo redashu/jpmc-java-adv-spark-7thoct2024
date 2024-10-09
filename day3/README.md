@@ -46,7 +46,7 @@ I have no name!@jpmc-spark-worker-0:/opt/bitnami/spark$
 spark-submit   --master spark://jpmc-spark-master-svc:7077 --deploy-mode cluster 
  --class org.apache.spark.examples.SparkPi examples/jars/spark-examples_2.12-3.5.1.jar 10 
 
- 
+
 24/10/09 05:36:45 INFO SecurityManager: Changing view acls to: spark
 24/10/09 05:36:45 INFO SecurityManager: Changing modify acls to: spark
 24/10/09 05:36:45 INFO SecurityManager: Changing view acls groups to: 
@@ -62,5 +62,12 @@ spark-submit   --master spark://jpmc-spark-master-svc:7077 --deploy-mode cluster
 24/10/09 05:36:52 INFO ClientEndpoint: spark-submit not configured to wait for completion, exiting spark-submit JVM.
 24/10/09 05:36:52 INFO ShutdownHookManager: Shutdown hook called
 24/10/09 05:36:52 INFO ShutdownHookManager: Deleting directory /tmp/spark-aaf5011e-c6aa-4ee2-becf-571628e9e05f
+
+```
+
+### in general also command 
+
+```
+spark-submit  --class com.example.Ashucode1 --deploy-mode cluster  target/ashucode1-1.0-SNAPSHOT.jar 
 
 ```
