@@ -309,3 +309,23 @@ SparkSession available as 'spark'.
 
 <img src="spi.png">
 
+## ML category 
+
+<img src="ml1.png">
+
+### Inderstanding spark Mlib 
+
+<img src="mlib.png">
+
+### spark MLlib + kubeflow 
+
+<img src="kubef.png">
+
+### Regression in ML 
+
+<img src="ml2.png">
+
+### AI models 
+
+<img src="genai.png">
+
