@@ -42,7 +42,7 @@ I have no name!@jpmc-spark-worker-0:/opt/bitnami/spark$
 
 ===> cluster mode command 
 
-```
+
 spark-submit   --master spark://jpmc-spark-master-svc:7077 --deploy-mode cluster 
  --class org.apache.spark.examples.SparkPi examples/jars/spark-examples_2.12-3.5.1.jar 10 
 
@@ -69,5 +69,62 @@ spark-submit   --master spark://jpmc-spark-master-svc:7077 --deploy-mode cluster
 
 ```
 spark-submit  --class com.example.Ashucode1 --deploy-mode cluster  target/ashucode1-1.0-SNAPSHOT.jar 
+
+```
+
+### Introducing spark sql 
+
+<img src="spl1.png">
+
+### Understanding dataframes in spark sql 
+
+<img src="df.png">
+
+### starting standalone spark 
+
+```
+sudo chmod 777 /opt/spark35/ -R 
+
+===>
+start-master.sh 
+
+starting org.apache.spark.deploy.master.Master, logging to /opt/spark35/logs/spark-ec2-user-org.apache.spark.deploy.master.Master-1-ashu-spark-machine.out
+
+
+[ec2-user@ashu-spark-machine ~]$ netstat -nltp
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:39893         0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::8080                 :::*                    LISTEN      13869/java          
+tcp6       0      0 172.31.33.162:7077      :::*                    LISTEN      13869/java          
+tcp6       0      0 :::22                   :::*                    LISTEN     
+
+ -                   
+[ec2-user@ashu-spark-machine ~]$ start-worker.sh  172.31.33.162:7077 
+starting org.apache.spark.deploy.worker.Worker, logging to /opt/spark35/logs/spark-ec2-user-org.apache.spark.deploy.worker.Worker-1-ashu-spark-machine.out
+
+
+[ec2-user@ashu-spark-machine ~]$ jps
+13944 Worker
+14012 Jps
+13869 Master
+
+
+[ec2-user@ashu-spark-machine ~]$ netstat -nlpt
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:39893         0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::8080                 :::*                    LISTEN      13869/java          
+tcp6       0      0 :::8081                 :::*                    LISTEN      13944/java          
+tcp6       0      0 172.31.33.162:7077      :::*                    LISTEN      13869/java          
+tcp6       0      0 172.31.33.162:39859     :::*                    LISTEN      13944/java          
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+[ec2-user@ashu-spark-machine ~]$ 
 
 ```
