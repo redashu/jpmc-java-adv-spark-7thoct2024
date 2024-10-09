@@ -249,3 +249,10 @@ select  t1.id , t1.name , t1.email , t2.address
 Time taken: 0.828 seconds, Fetched 3 row(s)
 
 ```
+
+### please use above day3 java code with apache maven to build and submit using spark 
+
+```
+spark-submit --class com.example.Demosql1 target/demosql1-1.0-SNAPSHOT.jar 
+
+```
