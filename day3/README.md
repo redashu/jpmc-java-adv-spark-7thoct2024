@@ -256,3 +256,19 @@ Time taken: 0.828 seconds, Fetched 3 row(s)
 spark-submit --class com.example.Demosql1 target/demosql1-1.0-SNAPSHOT.jar 
 
 ```
+
+## Pyspark 
+
+### install python lib for pyspark support 
+
+```
+sudo yum install python3-pip 
+pip3  install py4j numpy 
+
+```
+## some info about pyspark 
+
+<img src="pysp1.png">
+
+
+### python code 
