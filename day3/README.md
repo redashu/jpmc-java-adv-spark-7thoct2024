@@ -271,4 +271,33 @@ pip3  install py4j numpy
 <img src="pysp1.png">
 
 
-### python code 
+### pyspark for word count 
+
+```
+pyspark
+Python 3.9.16 (main, Jul  5 2024, 00:00:00) 
+[GCC 11.4.1 20230605 (Red Hat 11.4.1-2)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+24/10/09 09:38:19 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 3.5.3
+      /_/
+
+Using Python version 3.9.16 (main, Jul  5 2024 00:00:00)
+Spark context Web UI available at http://ip-172-31-33-162.ap-south-1.compute.internal:4040
+Spark context available as 'sc' (master = local[*], app id = local-1728466700558).
+SparkSession available as 'spark'.
+>>> df=sc.textFile("file:///home/ec2-user/data.txt")
+>>> df.first()
+'hello world this jpmc spark serssion '                                         
+>>> df.take(4)
+['hello world this jpmc spark serssion ', 'hello world this jpmc spark serssion ', 'hello world this jpmc spark serssion ', 'hello world this jpmc spark serssion ']
+>>> 
+
+```
+
